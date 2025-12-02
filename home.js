@@ -80,3 +80,15 @@ document
   .addEventListener("click", function () {
     handleToggle("cash-out-parent")
   });
+
+document
+  .getElementById("transfer-money-button")
+  .addEventListener("click", function () {
+    handleToggle("transfer-money-parent")
+  });
+
+document
+  .getElementById("get-bonus-button")
+  .addEventListener("click", function () {
+    handleToggle("get-bonus-parent")
+  });
