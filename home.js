@@ -1,4 +1,5 @@
 const pinNumber  = 1234;
+const transactionData =[]
 
 document.getElementById("add-money-btn").addEventListener("click",function(e){
     e.preventDefault();
@@ -25,6 +26,14 @@ document.getElementById("add-money-btn").addEventListener("click",function(e){
         document.getElementById("available-balance").innerText = newTaka;
         //console.log(newTaka);
     }
+    const data = {
+      name:"Add Money",
+      date:new Date().toLocaleTimeString(),
+    }
+    transactionData.push(data);
+    console.log(data)
+    
+
 })
 
 document.getElementById("cash-out-btn").addEventListener("click",function(e){
@@ -46,6 +55,37 @@ document.getElementById("cash-out-btn").addEventListener("click",function(e){
         //console.log(newTaka);
     
 })
+//transaction 
+document.getElementById("transaction-button").addEventListener("click",()=>{
+  
+  const transactionContainer = document.getElementById("transaction-container")
+  
+
+  for(const data of transactionData){
+    const div = document.createElement("div")
+    div.innerHTML =`
+      <div class="bg-gray-200 rounded-xl p-3 flex justify-between items-center m-3">
+              <div class="flex items-center">
+                  <div class="p-3 rounded-full bg-[#f4f5f7]">
+                    <img src="./assets/wallet1.png" class="mx-auto" alt="" />
+                  </div>
+                  <div class="ml-3">
+                    <h1>${data.name}</h1>
+                    <p>${data.date}</p>
+                  </div>
+              </div>
+      
+              <i class="fa-solid fa-ellipsis-vertical"></i>
+            </div>
+    `;
+    transactionContainer.appendChild(div);
+  }
+  
+})
+
+
+
+
 // toggling feature
 
 // function handleToggle(id) {
@@ -71,7 +111,6 @@ function handleToggle(id) {
     document.getElementById(id).style.display = "block";
 }
 
-
 document.getElementById("add-button").addEventListener("click", function (e) {
     handleToggle("add-money-parent")
 });
@@ -92,3 +131,17 @@ document
   .addEventListener("click", function () {
     handleToggle("get-bonus-parent")
   });
+document
+  .getElementById("pay-bill-button")
+  .addEventListener("click", function () {
+    handleToggle("pay-bill-parent")
+  });
+document
+  .getElementById("transaction-button")
+  .addEventListener("click", function () {
+    handleToggle("transaction-container")
+  });
+
+
+
+  
