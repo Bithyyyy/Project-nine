@@ -17,21 +17,23 @@ document.getElementById("add-money-btn").addEventListener("click",function(e){
         alert("Check pin number")
         return;
     }
+    const add = parseInt(document.getElementById("add-amount").value)
+
     if(pinNumberInt == pinNumber)
     {
         const taka = parseInt(document.getElementById("available-balance").innerText)
-        const add = parseInt(document.getElementById("add-amount").value)
-
+        
         const newTaka = taka + add
         document.getElementById("available-balance").innerText = newTaka;
         //console.log(newTaka);
     }
     const data = {
-      name:"Add Money",
-      date:new Date().toLocaleTimeString(),
-    }
+    name: "Add Money",
+    amount: add, // store amount
+    date: new Date().toLocaleTimeString(),
+      };
     transactionData.push(data);
-    console.log(data)
+
     
 
 })
@@ -41,6 +43,7 @@ document.getElementById("cash-out-btn").addEventListener("click",function(e){
     const accountNumber = document.getElementById("agent-number").value;
     const bankAccountNumberInt = parseInt(document.getElementById("account-number").value)
     const pinNumberInt = parseInt(document.getElementById("add-pin").value)
+    const add = parseInt(document.getElementById("cash-out-amount").value)
 
     if(accountNumber.length < 11)
     {
@@ -48,7 +51,7 @@ document.getElementById("cash-out-btn").addEventListener("click",function(e){
         return;
     }
         const taka = parseInt(document.getElementById("available-balance").innerText)
-        const add = parseInt(document.getElementById("cash-out-amount").value)
+        
 
         const newTaka = taka - add
         document.getElementById("available-balance").innerText = newTaka;
@@ -56,10 +59,81 @@ document.getElementById("cash-out-btn").addEventListener("click",function(e){
     const data = {
       name:"Cash Out",
       date:new Date().toLocaleTimeString(),
+      amount: -add,
     }
     transactionData.push(data);
     console.log(data)
 })
+
+//Get Bonus
+const cuponCode = "hello";
+
+document.getElementById("get-bonus-btn").addEventListener("click", () => {
+
+  const cuppon = document.getElementById("cuppon").value;
+
+  if (cuppon === cuponCode) {
+    alert("Discount code added");
+  } else {
+    alert("Invalid coupon");
+  }
+
+});
+
+//transfer money
+document.getElementById("trans-money-btn").addEventListener("click",function(e){
+    e.preventDefault();
+    const accountNumber = document.querySelector("#transfer-money-parent #account-number").value.trim();
+    const add = parseInt(document.querySelector("#transfer-money-parent #add-amount").value);
+
+    if(accountNumber.length < 11)
+    {
+        alert("Enter your account number");
+        return;
+    }
+        const taka = parseInt(document.getElementById("available-balance").innerText)
+        
+
+        const newTaka = taka - add
+        document.getElementById("available-balance").innerText = newTaka;
+        //console.log(newTaka);
+    const data = {
+      name:"Transfer Money",
+      date:new Date().toLocaleTimeString(),
+      amount: -add,
+    }
+    transactionData.push(data);
+    //console.log(data)
+})
+
+//Pay Bill
+
+document.getElementById("pay-bill-btn").addEventListener("click",function(e){
+    e.preventDefault();
+    const accountNumber = document.querySelector("#pay-bill-parent #account-number").value.trim();
+    const add = parseInt(document.querySelector("#pay-bill-parent #add-amount").value);
+
+    if(accountNumber.length < 11)
+    {
+        alert("Enter your account number");
+        return;
+    }
+        const taka = parseInt(document.getElementById("available-balance").innerText)
+        
+
+        const newTaka = taka - add
+        document.getElementById("available-balance").innerText = newTaka;
+        //console.log(newTaka);
+    const data = {
+      name:"Pay Bill",
+      date:new Date().toLocaleTimeString(),
+      amount: -add,
+    }
+    transactionData.push(data);
+    //console.log(data)
+})
+
+
 //transaction 
 document.getElementById("transaction-button").addEventListener("click",()=>{
   
@@ -79,6 +153,10 @@ document.getElementById("transaction-button").addEventListener("click",()=>{
                     <p>${data.date}</p>
                   </div>
               </div>
+              <div class="text-right font-bold">
+        ${data.amount > 0 ? `<span class="ml-15 text-green-600">+${data.amount} Tk</span>` 
+                          : `<span class="ml-15 text-red-600">${data.amount} Tk</span>`}
+      </div>
       
               <i class="fa-solid fa-ellipsis-vertical"></i>
             </div>
