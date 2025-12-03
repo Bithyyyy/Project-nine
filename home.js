@@ -53,18 +53,23 @@ document.getElementById("cash-out-btn").addEventListener("click",function(e){
         const newTaka = taka - add
         document.getElementById("available-balance").innerText = newTaka;
         //console.log(newTaka);
-    
+    const data = {
+      name:"Cash Out",
+      date:new Date().toLocaleTimeString(),
+    }
+    transactionData.push(data);
+    console.log(data)
 })
 //transaction 
 document.getElementById("transaction-button").addEventListener("click",()=>{
   
   const transactionContainer = document.getElementById("transaction-container")
-  
+   transactionContainer.innerHTML = `<h1 class="my-5 font-bold pl-8 pr-8 text-2xl text-blue-500">Transaction History</h1> `
 
   for(const data of transactionData){
     const div = document.createElement("div")
     div.innerHTML =`
-      <div class="bg-gray-200 rounded-xl p-3 flex justify-between items-center m-3">
+      <div class="bg-gray-100 rounded-xl p-3 flex justify-between items-center m-3">
               <div class="flex items-center">
                   <div class="p-3 rounded-full bg-[#f4f5f7]">
                     <img src="./assets/wallet1.png" class="mx-auto" alt="" />
@@ -141,7 +146,3 @@ document
   .addEventListener("click", function () {
     handleToggle("transaction-container")
   });
-
-
-
-  
