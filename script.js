@@ -8,7 +8,7 @@ document.getElementById("loginButton").addEventListener("click",function(e){
     
     if(pinNumber == pinNumberInt && mobileNumber == mobileNumberInt)
     {
-        window.location.href ="./home.html"
+        window.location.href="./home.html"
     }
     else{
         alert("Invalid Credentials!")
